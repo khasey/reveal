@@ -4,6 +4,7 @@ import 'package:reveal/screens/chat.dart';
 import 'package:reveal/screens/profile.dart';
 import 'package:reveal/screens/map.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Navigation extends StatefulWidget {
   const Navigation({super.key});
@@ -19,15 +20,22 @@ class _NavigationState extends State<Navigation> {
   @override
   Widget build(BuildContext context) {
      final ThemeData theme = Theme.of(context);
+     double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    double padding = screenWidth * 0.03;
+    double containerSize = screenWidth * 0.15;
+
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 11, 11, 11),
-        foregroundColor: Colors.white,
-        elevation: 10,
-        centerTitle: true,
-        title: Text("Reveal",
+        // backgroundColor: const Color.fromARGB(255, 11, 11, 11),
+       
         
-        ), 
+        centerTitle: true,
+        title: SvgPicture.asset(
+          'assets/logo.svg',
+          height: screenHeight * 0.05,
+          alignment: Alignment.center,
+        ),
         
       ),
       body: Stack(
