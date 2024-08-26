@@ -43,6 +43,7 @@ dev_dependencies:
   hexcolor: ^3.0.1
   flutter_svg: ^2.0.10+1
   modal_bottom_sheet: ^3.0.0
+  image_picker: ^0.8.7+3
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -65,6 +66,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/logo.svg
+    - assets/selfie.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
