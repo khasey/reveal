@@ -20,72 +20,15 @@ class _ProfileState extends State<Profile> {
             borderRadius: BorderRadius.circular(10),
           ),
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height * 0.71,
+          height: MediaQuery.of(context).size.height * 0.4,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      showModalBottomSheet(
-                        context: context,
-                        builder: (context) {
-                          return Container(
-                            height: MediaQuery.of(context).size.height * 0.5,
-                            color: AppColors.primaryColor,
-                            child: const Column(
-                              children: [
-                                ListTile(
-                                  leading: Icon(Icons.person, color: Colors.white),
-                                  title: Text("Edit pseudo", style: TextStyle(color: Colors.white)),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.edit, color: Colors.white),
-                                  title: Text("Edit genre", style: TextStyle(color: Colors.white)),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.edit, color: Colors.white),
-                                  title: Text("Edit age", style: TextStyle(color: Colors.white)),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.edit, color: Colors.white),
-                                  title: Text("Edit recherche genre", style: TextStyle(color: Colors.white)),
-                                ),
-                                ListTile(
-                                  leading: Icon(Icons.edit, color: Colors.white),
-                                  title: Text("Edit age", style: TextStyle(color: Colors.white)),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      );
-                    },
-                    child: Align(
-                      alignment: Alignment.topLeft,
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        child: Center(child: Icon(Icons.settings, color: Colors.white)),
-                      ),
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {},
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Container(
-                        width: 50,
-                        height: 50,
-                        child: Center(child: Icon(Icons.photo, color: Colors.white)),
-                      ),
-                    ),
-                  ),
-                ],
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: const AssetImage("assets/images/profile.jpg"),
               ),
-              
-              const Spacer(), // This pushes the next widget to the bottom
+              SizedBox(height: 15,), // This pushes the next widget to the bottom
               const Align(
                 alignment: Alignment.bottomCenter,
                 child: Padding(
@@ -104,8 +47,110 @@ class _ProfileState extends State<Profile> {
                   ),
                 ),
               ),
+              
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      showModalBottomSheet(
+                        context: context,
+                        builder: (context) {
+                          return Container(
+                            height: MediaQuery.of(context).size.height * 0.7,
+                            color: AppColors.primaryColor,
+                            
+                            child: Column(
+                              children: [
+                                textField("Nom"),
+                                textField("Prénom"),
+                                textField("Age"),
+                                textField("Genre"),
+                                textField("Recherche"),
+                                textField("Bio"),
+                                
+                              ],
+                            ),
+                          );
+                        },
+                      );
+                    },
+                    
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                           decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                        child: Center(
+                            child: Icon(Icons.settings, color: Colors.black)),
+                      ),
+                    ),
+                  ),
+                  
+                  GestureDetector(
+                    onTap: () {
+                      print("alex connard");
+                    },
+                    child: Align(
+                      alignment: Alignment.topRight,
+                      child: Container(
+                        width: 50,
+                        height: 50,
+                        decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                        child: Center(
+                            child: Icon(Icons.photo, color: Colors.black)),
+                      ),
+                    ),
+                  ),
+                  
+                ],
+              ),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Container(
+                  width: 70,
+                  height: 70,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(50),
+                  ),
+                  child: Center(
+                    child: Icon(Icons.photo_camera, color: AppColors.primaryColor, size: 40,),
+                  ),
+                ),
+              ),
+              
             ],
           ),
+        ),
+      ),
+    );
+  }
+
+  Widget textField(String text) {
+    return Container(
+      padding: const EdgeInsets.only(left: 16 , right: 16, top: 8),
+      child: TextField(
+        cursorColor: Colors.white,
+        style: const TextStyle(color: Colors.white),
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+          ),
+          focusedBorder: const OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+          ),
+          // suffixIcon: const Icon(Icons.edit, color: Colors.white),
+          prefixIcon: const Icon(Icons.person, color: Colors.white),
+          hintText: text,
+          hintStyle: const TextStyle(color: Color.fromARGB(125, 255, 255, 255)),
         ),
       ),
     );
