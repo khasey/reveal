@@ -44,6 +44,12 @@ dev_dependencies:
   flutter_svg: ^2.0.10+1
   modal_bottom_sheet: ^3.0.0
   image_picker: ^0.8.7+3
+  ionicons: ^0.2.2
+  contained_tab_bar_view: ^0.8.0
+  inner_shadow_widget: ^0.0.3
+  custom_sliding_segmented_control: ^1.8.3
+  flutter_map: ^7.0.2
+  action_slider: ^0.7.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

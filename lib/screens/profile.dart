@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:reveal/constantColors.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:action_slider/action_slider.dart';
 
 class Profile extends StatefulWidget {
   const Profile({super.key});
@@ -44,7 +45,7 @@ class _ProfileState extends State<Profile> {
           children: [
             Container(
               decoration: BoxDecoration(
-                
+                // color: AppColors.primaryColor,
                 borderRadius: BorderRadius.circular(10),
               ),
               width: MediaQuery.of(context).size.width,
@@ -92,7 +93,8 @@ class _ProfileState extends State<Profile> {
                             context: context,
                             builder: (context) {
                               return Container(
-                                height: MediaQuery.of(context).size.height * 0.7,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.7,
                                 color: AppColors.primaryColor,
                                 child: Column(
                                   children: [
@@ -102,6 +104,24 @@ class _ProfileState extends State<Profile> {
                                     textField("Genre"),
                                     textField("Recherche"),
                                     textField("Bio"),
+                                    ActionSlider.standard(
+                                      sliderBehavior: SliderBehavior.stretch,
+                                      width: 300.0,
+                                      backgroundColor: Colors.white,
+                                      toggleColor: Colors.lightGreenAccent,
+                                      action: (controller) async {
+                                        controller
+                                            .loading(); //starts loading animation
+                                        await Future.delayed(
+                                            const Duration(seconds: 3));
+                                        controller
+                                            .success(); //starts success animation
+                                        await Future.delayed(
+                                            const Duration(seconds: 1));
+                                        controller.reset(); //resets the slider
+                                      },
+                                      child: const Text('Slide pour valider'),
+                                    ),
                                   ],
                                 ),
                               );
@@ -126,13 +146,15 @@ class _ProfileState extends State<Profile> {
                               borderRadius: BorderRadius.circular(50),
                             ),
                             child: const Center(
-                                child: Icon(Icons.settings, color: Colors.black)),
+                                child:
+                                    Icon(Icons.settings, color: Colors.black)),
                           ),
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          _showImagePickerOptions(context); // Affiche les options
+                          _showImagePickerOptions(
+                              context); // Affiche les options
                         },
                         child: Align(
                           alignment: Alignment.topRight,
@@ -158,34 +180,33 @@ class _ProfileState extends State<Profile> {
                       ),
                     ],
                   ),
-                  Align(
-                    alignment: Alignment.bottomCenter,
-                    child: Container(
-                      width: 60,
-                      height: 60,
-                      decoration: BoxDecoration(
-                        boxShadow: [
-                                BoxShadow(
-                                  color: Colors.black.withOpacity(0.3),
-                                  spreadRadius: 1,
-                                  blurRadius: 5,
-                                  offset: const Offset(0, 1),
-                                ),
-                              ],
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(50),
-                      ),
-                      child: Center(
-                        child: Icon(Icons.photo_camera,
-                            color: AppColors.primaryColor, size: 40),
-                      ),
-                    ),
-                  ),
+                  // Align(
+                  //   alignment: Alignment.bottomCenter,
+                  //   child: Container(
+                  //     width: 60,
+                  //     height: 60,
+                  //     decoration: BoxDecoration(
+                  //       boxShadow: [
+                  //               BoxShadow(
+                  //                 color: Colors.black.withOpacity(0.3),
+                  //                 spreadRadius: 1,
+                  //                 blurRadius: 5,
+                  //                 offset: const Offset(0, 1),
+                  //               ),
+                  //             ],
+                  //       color: Colors.white,
+                  //       borderRadius: BorderRadius.circular(50),
+                  //     ),
+                  //     child: Center(
+                  //       child: Icon(Icons.photo_camera,
+                  //           color: AppColors.primaryColor, size: 40),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
-            const SizedBox(height: 15),
-
+            const SizedBox(height: 50),
             Expanded(
               flex: 1,
               child: Container(
@@ -196,31 +217,48 @@ class _ProfileState extends State<Profile> {
                     const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.bolt_rounded, color: Colors.lightBlue, size: 40,),
-                        Text("Decouvrir plus rapidement", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w800),),
-                        
+                        Icon(
+                          Icons.bolt_rounded,
+                          color: Colors.lightBlue,
+                          size: 40,
+                        ),
+                        Text(
+                          "Decouvrir plus rapidement",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w800),
+                        ),
                       ],
                     ),
-                    const Text("Boost ton profile pour plus d'interactions", style: TextStyle(color: Colors.black, fontSize: 15,),),
+                    const Text(
+                      "Boost ton profile pour plus d'interactions",
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 15,
+                      ),
+                    ),
                     const SizedBox(height: 25),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         elevation: 1,
-                      
                         fixedSize: Size(200, 50),
-                      
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(40),
                         ),
                       ),
                       onPressed: () {},
-                      child: Text("Acheter", style: TextStyle(color: AppColors.primaryColor, fontSize: 20, fontWeight: FontWeight.w600),),
-                      )
+                      child: Text(
+                        "Acheter",
+                        style: TextStyle(
+                            color: AppColors.primaryColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w600),
+                      ),
+                    )
                   ],
-                  
                 ),
               ),
-
             )
           ],
         ),
