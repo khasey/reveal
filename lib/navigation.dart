@@ -14,42 +14,39 @@ class Navigation extends StatefulWidget {
 }
 
 class _NavigationState extends State<Navigation> {
-  int currentPageIndex = 0;
+  int currentPageIndex = 0; // Variable pour contrôler la page active
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData theme = Theme.of(context);
-    double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
-    double padding = screenWidth * 0.03;
-    double containerSize = screenWidth * 0.15;
 
     return Scaffold(
-      appBar: currentPageIndex != 1 // On vérifie si la page n'est pas "Map"
-          ? AppBar(
-              centerTitle: true,
-              title: SvgPicture.asset(
-                'assets/logo.svg',
-                height: screenHeight * 0.05,
-                alignment: Alignment.center,
-              ),
-            )
-          : null, // Pas d'AppBar pour la page "Map"
       body: Stack(
         children: [
+          // Contenu principal (les différentes pages)
           <Widget>[
-            /// Home page
             const Acceuil(),
-
-            /// Map page
             const Map(),
-
-            /// Chat page
             const Chat(),
-
-            /// Profile page
             const Profile(),
           ][currentPageIndex],
+
+          // Afficher le logo si la page active n'est pas la page Map (index 1)
+          if (currentPageIndex != 1)
+            Positioned(
+              top: 70, // Distance par rapport au haut de l'écran
+              left: 0,
+              right: 0,
+              child: Center(
+                child: SvgPicture.asset(
+                  'assets/logo2.svg',
+                  height: screenHeight * 0.05, // Taille du logo
+                  alignment: Alignment.center,
+                ),
+              ),
+            ),
+
+          // Barre de navigation en bas
           Positioned(
             bottom: 5,
             left: 20,
